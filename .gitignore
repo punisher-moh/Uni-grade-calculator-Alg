@@ -1,0 +1,39 @@
+# Code::Blocks
+*.depend
+*.layout
+*.cbp
+*.workspace
+*.layout.save
+*.depend.save
+
+# Compiled object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# Backup files
+*~
+*.bak
+*.tmp
+
+# CTags
+tags
+
+# Build directories
+bin/
+build/
+Debug/
+Release/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
