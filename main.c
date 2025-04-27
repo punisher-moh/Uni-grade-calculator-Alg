@@ -23,7 +23,7 @@ void main()
                f1 = fopen(fpath,"w");
                if(f1 == NULL) printf("errror");
             }
-                printf("how many modules you have :");
+                printf("how many modules do you have :");
                 scanf("%d",&n);
                 for(i = 1 ; i <= n ; i++)
                 {
