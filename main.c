@@ -1,49 +1,55 @@
 #include "function.h"
-void main()
+
+int main()
 {
-    int n,i,cf,x,a=1;
-    FILE *f1;
-    float M,noteE,noteT;
+    int n , i , cf , x , a = 1;
+    float M , noteE , noteT , examp , TDp;
     char subname [20];
-    char fpath[30];
+    char fpath [30];
+    FILE *f1;
     node p;
     init(&p);
     printf("\n1. get data from keyboard.");
     printf("\n2. get data from a file.");
     printf("\nchoose (1-2) : ");
     scanf("%d",&x);
-    switch(x){
+    printf("give pourcentage of exam:");
+    scanf("%f",&examp);
+    printf("give pourcentage of exam:");
+    scanf("%f",&TDp);
+    switch(x)
+    {
         case 1:
-            printf("do you want to save your marks in a file press '0' if no '1'");
+            printf("do you want to save your marks in a file press '1' if no '0'");
             scanf("%d",&a);
-            if (a==0)
-            {
-               printf("give fill name where you want to save your data :");
+            if (a == 1)
+              {
+               printf("give file name where you want to save your data :");
                scanf("%s",fpath);
                f1 = fopen(fpath,"w");
-               if(f1 == NULL) printf("errror");
-            }
+               if(f1 == NULL) printf("error");
+              }
                 printf("how many modules do you have :");
                 scanf("%d",&n);
                 for(i = 1 ; i <= n ; i++)
                 {
-                printf("give the %d subject name :",i);
-                scanf("%s",subname);
+                  printf("give the %d subject name :",i);
+                  scanf("%s",subname);
 
-                printf("give the coefition of %s :",subname);
-                scanf("%d",&cf);
+                  printf("give the coefition of %s :",subname);
+                  scanf("%d",&cf);
 
-                printf("give the exam mark of %s :",subname);
-                scanf("%f",&noteE);
+                  printf("give the exam mark of %s :",subname);
+                  scanf("%f",&noteE);
 
-                printf("give the TD note of %s :",subname);
-                scanf("%f",&noteT);
-               lecture(&p,subname,cf,noteE,noteT);
-                if (a==0)
-                  fprintf(f1,"subname:%s coef:%d noteE:%f noteT:%f\n",subname,cf,noteE,noteT);
+                  printf("give the TD note of %s :",subname);
+                  scanf("%f",&noteT);
+                  lecture(&p,subname,cf,noteE,noteT);
+                  if (a == 1)
+                     fprintf(f1,"subname:%s coef:%d noteE:%f noteT:%f\n",subname,cf,noteE,noteT);
                 }
-                if (a==0)
-                  fclose(f1);
+                  if (a == 1)
+                    fclose(f1);
                 break;
         case 2:
             printf("Your markes must be written in this format:\n");
@@ -61,9 +67,8 @@ void main()
                 fclose(f1);
             }
             break;
-    }
-
-     M=calcMoy(p);
-     printf("\nvotre moyenne est =%.2f",M);
+      }
+     printf("\nvotre moyenne est =%.2f",calcMoy(p , examp , TDp));
+     free(&p);
    return 0;
 }

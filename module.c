@@ -34,11 +34,11 @@ void setmodulename (node p , char * subname)
 }
 void setexam (node p , float note)
 {
-    p->exam=note;
+    p->exam = note;
 }
 void setTD (node p , float note)
 {
-    p->TD=note;
+    p->TD = note;
 }
 
 void setcoef (node p , int cf)
@@ -53,7 +53,13 @@ void setnext (node p ,node q)
 
 void init(node *p)
 {
-    *p=NULL;
+    *p = NULL;
+}
+
+void FreeNode (node *p)
+{
+    free(p);
+    *p = NULL;
 }
 
 

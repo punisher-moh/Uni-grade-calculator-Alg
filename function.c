@@ -1,36 +1,38 @@
 #include "function.h"
-#include "module.h"
 node creatNode (char *subname , int cf , float noteE , float noteT)
 {
     node h=alloc();
-    setcoef(h,cf);
-    setexam(h,noteE);
-    setmodulename(h,subname);
-    setTD(h,noteT);
-    setnext(h,NULL);
+    setcoef(h , cf);
+    setexam(h , noteE);
+    setmodulename(h , subname);
+    setTD(h , noteT);
+    setnext(h , NULL);
     return h;
 }
 
-void lecture (node *p,char * subname , int cf , float noteE , float noteT )
+void lecture (node *p ,char * subname , int cf , float noteE , float noteT )
     {
-      node h=creatNode (subname , cf , noteE , noteT);
-      if (*p==NULL)
+      node h = creatNode (subname , cf , noteE , noteT);
+      if (*p == NULL)
            *p = h;
       else{
-           setnext(h,*p);
+           setnext(h , *p);
            *p = h;
           }
     }
 
-float calcMoy (node p)
+float calcMoy (node p , float examp , float TDp)
 {
-    float  moy=0;
-    int CF=0;
-    while (p!=NULL)
+    float  moy = 0;
+    int CF = 0;
+    node tmp ;
+    while (p != NULL)
         {
-         moy= moy + (getexam(p)*0.6 + getTD(p)*0.4)*getcoef(p);
-         CF=CF+getcoef(p);
-         p=getnext(p);
+         moy = moy + (getexam(p) *examp + getTD(p) * TDp) * getcoef(p);
+         CF = CF+getcoef(p);
+         tmp = p;
+         p = getnext(p);
+         FreeNode(&tmp);
         }
    return(moy/CF);
 }
